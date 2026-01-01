@@ -1,0 +1,103 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+        <title>Spam or Ham Checker</title>
+    </head>
+    <body>
+        <header><h1>Welcome to the WebPage
+        </h1></header>
+        <div>
+            <h1>
+                Enter your mail to be checked : 
+            </h1>
+            <form id="spam-form">
+                <label for="text" name="text"> Enter the text : </label>
+                <textarea id="text" name="text"></textarea><br><br>
+                <button type="submit">Classify</button>
+            </form>
+            <h2>Result:</h2>
+            <p id="result">No Result yet !!</p>
+        </div>
+        <footer>
+            <p><small>2026 @Propel.All rights received</small></p>
+        </footer>
+        <script>
+            document.getElementById("spam-form").addEventListener("submit",async(event)=>{
+                event.preventDefault();
+                const formData=new FormData(event.target)
+                try{
+                    const response=await fetch('http://127.0.0.1:8000/predict',{
+                        method: "POST",
+                        body:formData
+                    })
+                    if(!response.ok){
+                        throw new Error("Failed to fetch result")
+                    }
+                    // get the prediction from response
+
+                    const result=await response.json();
+                    document.getElementById("result").textContent=result;
+
+                }catch(error){
+                    document.getElementById("result").textContent="Error : "+error.message
+                }
+
+            })
+
+            
+        </script>
+
+    </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAM OR HAM CHECKER</title>
+</head>
+<body>
+    <header>
+        <h1>WELCOME TO SPAM OR HAM CHECKER!!!!</h1>
+    </header>
+    <div>
+        <h1>Enter your mail to be checked: </h1>
+        <form id="spam-form">
+            <label for="text" name="text" required>
+                ENTER TEXT:
+            </label>
+            <textarea id="text" name="text"></textarea><br><br>
+            <button type="submit">Classify</button>
+        </form>
+        <h2>Result: </h2>
+        <p id="result">No result yet</p>
+    </div>
+    <footer>
+        <p><small>2026 Propel. All rights received</small></p>
+    </footer>
+    
+    <script>
+        document.getElementById("spam-form").addEventListener("submit", async(event)=>{
+            event.preventDefault();
+            const formData = new FormData(event.target)
+            try{
+                const response = await fetch("http://127.0.0.1:8000/predict",{
+                    method: "POST",
+                    body: formData
+                })
+                if (!response.ok){
+                    throw new Error("Failed to fetch result!")
+                }
+                //get the prediction from response and convert to JSON type
+                const result = await response.json();
+                document.getElementById("result").textContent = result;
+            }catch(error){
+                document.getElementById("result").textContent = "Error:"+error.message
+            }
+        })
+    </script>
+</body>
+</html>
